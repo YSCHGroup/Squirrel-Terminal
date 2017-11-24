@@ -1,0 +1,12 @@
+ImageInfo(
+	Title: "[Template Image]"
+	Description: "[A Template image]"
+	SizeX: [height]
+	SizeY: [width]
+)
+ImageData(
+	(c,c,c,c,c,c ...)
+	(c,c,c,c,c,c ...)
+	   //...
+   //copy line SizeY times
+)

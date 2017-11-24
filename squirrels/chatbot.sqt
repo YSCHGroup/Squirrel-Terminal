@@ -1,0 +1,24 @@
+		#--- Chatbot ---
+	#Message System
+$host.UI.RawUI.ForegroundColor = "white"
+clear
+$history = get-content "history.dat"
+write-host "- Chatbot v1.0 -" -f white
+write-host "Commands: clear, restart" -f yellow
+foreach ($x in $history) { if ($x.StartsWith("bot>") -eq "true") { write-host $x -f gray} else { write-host $x -f cyan }}
+write-host "say> " -f yellow -nonewline; $message = read-host
+	#Display Message (if there is any) and Learn new phrases
+if ($message -eq "") { write-host "Please enter a message before sending!" -f red; start-sleep 2; run "chatroom.sqt"; }
+write-output "you> $message" >> "history.dat"
+$phraseList = get-content "phrases.dat"
+if (-Not ("$phraseList" -contains $message)) {write-output "$message" >> "phrases.dat";}
+	#Bot System
+$oldResponse = $response
+#start-sleep 1
+if ($message.ToLower().StartsWith("hi") -eq "true") { $response = ($a = "Hello.","Sup, how are you doing?","Hello there!","Sup :)","hai","Hai","hi","Hey now, you're a rock start, nananana...","Heeey!","Hellu","Hi there...","I've already said hi." ) | Get-Random }elseif ($message.ToLower().StartsWith("hello") -eq "true") {$response = ($a = "Hello.","Sup, how are you doing?","Hello there!","Sup :)","hai","Hai","Hi" ) | Get-Random}elseif ($message.ToLower().StartsWith("hey") -eq "true") { $response = ($a = "Hello.","Sup, how are you doing?","Hello there!","Sup :)","hai","Hai","Hi!","Hey now, you're a rock start, nananana...","Heeey!","Hellu","Hi there...","I've already said hi." ) | Get-Random}elseif ($message.ToLower().StartsWith("who are you") -eq "true") { $response = "I'm a friend"}elseif ($message.ToLower().StartsWith("ok") -eq "true") { $response = ($a = "yes...","Isn't it weird is it?","...") | Get-Random}elseif ($message.ToLower().StartsWith("no") -eq "true") { $response = ($a = "why not?","I agree.","Well, there we got divided opinions.") | Get-Random}elseif ($message.ToLower().StartsWith("yes") -eq "true") { $response = ($a = "Yeah.","No.","No.","You really think so..?","Or not.","It may change.","...","nope") | Get-Random}elseif ($message.ToLower() -contains "music") { $response = ($a = "I like music.","Nah... Music kinda sucks. Nothing to waist time on","Do you?") | Get-Random}elseif ($message.ToLower().StartsWith("x") -eq "true") { $response = ($a = "x","y","z") | Get-Random}elseif ($message.ToLower().StartsWith("x") -eq "true") { $response = ($a = "x","y","z") | Get-Random}elseif ($message.ToLower().StartsWith("good") -eq "true") { $response = ($a = "That's fantastic!","Great!","Really?","Me too","so...") | Get-Random}elseif ($message.ToLower() -contains "bad") { $response = ($a = "is it really that bad?","ok.","I don't think so.","That's negative.") | Get-Random}elseif ($message.ToLower().StartsWith("x") -eq "true") { $response = ($a = "x","y","z") | Get-Random}elseif ($message.ToLower().StartsWith("x") -eq "true") { $response = ($a = "x","y","z") | Get-Random}elseif ($message.ToLower().StartsWith("x") -eq "true") { $response = ($a = "x","y","z") | Get-Random}elseif ($message.ToLower().StartsWith("x") -eq "true") { $response = ($a = "x","y","z") | Get-Random}elseif ($message.ToLower().StartsWith("x") -eq "true") { $response = ($a = "x","y","z") | Get-Random}elseif ($message.ToLower().StartsWith("x") -eq "true") { $response = ($a = "x","y","z") | Get-Random}elseif ($message.ToLower().StartsWith("x") -eq "true") { $response = ($a = "x","y","z") | Get-Random}elseif ($message.ToLower().StartsWith("x") -eq "true") { $response = ($a = "x","y","z") | Get-Random}elseif ($message.ToLower().StartsWith("x") -eq "true") { $response = ($a = "x","y","z") | Get-Random}elseif ($message.ToLower().StartsWith("x") -eq "true") { $response = ($a = "x","y","z") | Get-Random}elseif ($message.ToLower() -eq "tell me a joke") { $array = Get-Content "jokes.dat"; $array -replace " ", '","'; $response = ($a = $array) | Get-Random; }else { $array = Get-Content "phrases.dat"; $array -replace " ", '","'; $response = ($a = $array) | Get-Random; }								#else { $response = ($a = "Sorry mate, can't understand you...","Didn't quit catch that...","Huh..?","Sorry..?","What did you say?","Please try again. (without typos)","Oi m8, what u sa'in?","Sorry mate, can't understand you...") | Get-Random}
+	#Print response
+write-output "bot> $response" >> "history.dat"
+	#Check commands
+if ($message.ToLower() -eq "clear") {write-output "" > "history.dat"}elseif ($message.ToLower() -eq "restart") { run "chatroom.sqt"}
+	#Restart
+run "chatroom.sqt"

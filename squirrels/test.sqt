@@ -1,0 +1,2 @@
+read-host
+read-file "test.sqt"

@@ -1,0 +1,34 @@
+	--- Squirrel Terminal Executables ---
+-- Info --
+Squirrel Terminal have a built-in supported fileformat 
+with its own custom commands (cmdlets) readable. It's 
+really easy to get started, just create a file with
+the extention ".sqt" and Squirrel Terminal will be able
+to read it with the command "read-file", just enter a
+full file path to the .sqt file, or just the name if 
+you're already inside the same directory as the file
+itself.
+
+-- Notes --
+But there are a few things to keep in mind. Here's a
+list over them:
+
+- Leave no bland lines in your code, it will display an error when runned.
+
+- The compiler reads only line -per line, which means you need to keep all
+  your code blocks at one line only.
+	Example: 
+	if ($true) { #Do things; #More things; }
+	Insted of:
+	if ($true) {
+	    #Do things;
+	    #More things;
+	}
+
+- ...
+
+-- Credits --
+This terminal was created by Dotch, and Dotch only.
+Please give all credit to him and you'll be free
+to use it as much as you want.
+twitter: www.twitter.com/DotchMC
